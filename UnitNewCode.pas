@@ -1,0 +1,167 @@
+unit UnitNewCode;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, Buttons, IniFiles, ComCtrls;
+
+type
+  TnewCode = class(TForm)
+    RadioGroup1: TRadioGroup;
+    StatusBar1: TStatusBar;
+    LabeledEdit1: TLabeledEdit;
+    BitBtn2: TBitBtn;
+    Label1: TLabel;
+    Memo1: TMemo;
+    Button1: TButton;
+    CheckBox1: TCheckBox;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+    procedure FormClick(Sender: TObject);
+    procedure LabeledEdit1Change(Sender: TObject);
+    procedure LabeledEdit1DblClick(Sender: TObject);
+  private
+    { Private declarations }
+    _readme, _APP, _ex : TStringList;
+
+  public
+    { Public declarations }
+    myini : ^TiniFile;
+    mName : string;
+    mOK : Boolean;
+    ProgramDir : string;
+    mNo : integer;
+    procedure load;
+
+    
+  end;
+
+var
+  newCode: TnewCode;
+
+implementation
+
+uses UnitG;
+{$R *.dfm}
+
+procedure TnewCode.BitBtn2Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TnewCode.FormCreate(Sender: TObject);
+begin
+  mOK := False;
+  _readme := TStringList.Create ;
+  _APP := TStringList.Create ;
+  _ex := TStringList.Create ;
+end;
+
+procedure TnewCode.RadioGroup1Click(Sender: TObject);
+var
+  s : string;
+  t : Integer;
+begin
+  t := RadioGroup1.ItemIndex;
+  if t<0 then exit;
+  s := _readme[t];
+  Memo1.Clear;
+  Memo1.Lines.Add(s);
+  StatusBar1.Panels[1].Text := _APP[t];
+  LabeledEdit1Change(self);
+end;
+
+procedure TnewCode.load;
+var
+  Count , i ,t : Integer;
+  s : string;
+begin  //
+       Count := myini^.ReadInteger('NewCode','Count',0);
+       if Count>0 then
+         begin
+           RadioGroup1.Items.Clear;
+           _readme.Clear;
+           _APP.Clear;
+           for i := 0 to Count-1 do
+            begin
+              s := myini^.ReadString('NewCode', 'check'+inttostr(i), '');
+              RadioGroup1.Items.Add(s);
+              s := myini^.ReadString('NewCode', 'readme'+inttostr(i), '');
+              _readme.Add(s);
+              t := myini^.ReadInteger('NewCode', 'APP'+inttostr(i), 0);
+              s := myini^.ReadString('App-ID', IntToStr(t), '');
+              _APP.Add(s);
+              s := myini^.ReadString('NewCode', 'ex'+inttostr(i), '');
+              _ex.Add(s); 
+            end;
+           RadioGroup1.ItemIndex := 0;
+           Memo1.Clear;
+           Memo1.Lines.Add(_readme[0]);
+           StatusBar1.Panels[1].Text := _APP[0];
+         end;
+end;
+
+procedure TnewCode.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  _readme.Free ;
+  _APP.Free ;
+  _ex.Free;
+end;
+
+procedure TnewCode.Button1Click(Sender: TObject);
+var
+   s : string;
+begin
+  mName := LabeledEdit1.Text;
+  if Length(mName)=0 then
+    begin
+        MessageDlg('文件名称未填写。', mtError, [mbOK], 0) ;
+        exit;
+    end;
+  if not IsValidFileName(mName) then
+    begin
+        MessageDlg('文件名称不符合命名方式！', mtError, [mbOK], 0) ;
+        exit;
+    end;
+  s := ExtractFileExt(mName);
+  if Length(s)=0 then
+    begin
+        MessageDlg('文件名称请加上扩展名。', mtError, [mbOK], 0) ;
+        exit;
+    end;
+  mOK := true;
+  mNo := RadioGroup1.ItemIndex ;
+  //对于某些文件要预先拷贝文件模版。
+  close;
+end;
+
+procedure TnewCode.FormClick(Sender: TObject);
+begin
+   StatusBar1.Panels[2].Text := inttostr(RadioGroup1.ItemIndex);
+end;
+
+procedure TnewCode.LabeledEdit1Change(Sender: TObject);
+var
+ s : string;
+ t : integer;
+begin
+  t := RadioGroup1.ItemIndex;
+  if t<0 then exit;
+  if checkbox1.Checked and (length(_ex[t])>0) then
+    begin
+      s := LabeledEdit1.Text;
+      s := ChangeFileExt(s, _ex[t]) ;
+      LabeledEdit1.Text := s;
+    end;
+end;
+
+procedure TnewCode.LabeledEdit1DblClick(Sender: TObject);
+begin
+  LabeledEdit1.SelectAll;
+end;
+
+end.

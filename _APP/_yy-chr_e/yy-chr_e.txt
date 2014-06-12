@@ -1,0 +1,99 @@
+--------------------------------------------
+  YY-CHR  version 0.98-02  (C)1999-2006 Yy  
+--------------------------------------------
+Sorry for Engrish, English is difficult for me. :-(
+
+
+------------
+ABOUT YY-CHR
+------------
+  YY-CHR is a tile editor for Windows.
+
+  Supported format
+   	1BPP 
+	2BPP NES ............................. nes, fds, chr
+	2BPP Game Boy ........................ gb, gbc
+	2BPP Neo Geo Pocket .................. ngp
+	2BPP Virtual Boy ..................... vb
+	2BPP MSX
+	4BPP SNES ............................ smc, fig
+	4BPP Sega Master System / Gamegear /
+			Wonder Swan Color .... sms, gg
+	4BPP MSX (/ Genesis?) ................ rom, dsk, smd, bin
+	4BPP Game Boy Advance ................ gba
+
+-------------------
+INSTALL / UNINSTALL
+-------------------
+    install   : unzip all files.
+    uninstall : delete files.
+    This program doesnt use Windows Registry.
+
+    * If YY-CHR does not run on Windows(95).
+      YY-CHR may be run when you update COMCTRL32.DLL.
+      When YY-CHR still does not run, please start up with "Ctrl" key.
+
+
+----------
+HOW TO USE
+----------
+Key:
+  Check the accelalation key in a menu.
+
+Mouse:
+  Left click
+    Left box  (Bank box) : Select edit area
+    Right box (Edit box) : Edit graphic
+    Palette box (.DAT)   : Select palette
+    Color list (.PAL)    : Select color
+
+  Right click
+    Left box  (Bank box) : Set area for copy, paste and clear
+    Right box (Edit box) : Pick up color
+    Color list (.PAL)    : Edit RGB value
+
+Shortcut Key:
+  F5    : save
+  F6    : save as...
+  F7    : reload
+  F8    : open file...
+  F9    : save BMP (chrXXX.bmp)
+  F11   : reload default palette, palette set, adf
+  F12   : load palette from emulators save state...
+
+  (* If listbox are not selected)
+  Home  : address = begin of CHR
+  End   : address = end of CHR
+  PgUp  : address -$1000
+  PgDn  : address +$1000
+  Up    : address -$0100
+  Down  : address +$0100
+  Left  : address -$0010
+  Right : address +$0010
+  -     : address -$0001
+  +     : address +$0001
+
+
+----
+TIPS
+----
+  If these files are found at start up, loaded automatically.
+    yy-chr.pal(palette)
+    yy-chr.dat(palette set)
+    yy-chr.adf(ADF(BG) pattern)
+    yy-chr.nes / yy-chr.chr
+
+  YY-CHR can load palette table from emulators save state.
+    Nesticle, Famtasia, VirtuaNES, LoopyNES, G-NES, nester, RockNES, ZSNES, 
+
+
+-------
+Contact
+-------
+I am a native Japanese. English is difficult for me.
+Please do not use slang when you send me mail. 
+
+	Yy
+	mail : yorn_y @ yahoo.co.jp (please delete space)
+	URL  : http://www.briansemu.com/yymarioed/
+

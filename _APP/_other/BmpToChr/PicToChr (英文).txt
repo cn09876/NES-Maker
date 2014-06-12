@@ -1,0 +1,84 @@
+------------------
+  Pic to CHR/NAM  
+    Ver. 0.10     
+      (c)2008 Yy  
+------------------
+
+[ If you want accurate document, translate "PicToChr_jp.txt". ]
+
+# Description
+  This is a development support tool for NES/Famicom.
+  It can make charactor image (CHR) and Nametable (NAM) from a picture.
+  It make optimized CHR.
+  See "screenshot*.png".
+
+# Environment in develop
+  OS  : Windows XP
+  CPU : Intel Core2Duo
+  RAM : 2GB
+  * this is not requirements
+
+
+# Installation
+  Expand zip file to the directory you like.
+  And, make the shortcut to "PicToChr.exe".
+
+  Files:
+    PicToChr.exe
+    PicToChr_en.txt
+    PicToChr_jp.txt
+    sample1.bmp
+    sample2.bmp
+    screenshot*.png
+
+
+# Uninstallation
+  Delete installed file.
+  This tool not use Windows registry.
+
+
+# Usage
+  (1)Open picture
+    a.Open from a bitmap file
+    b.Paste from clipboard
+
+    This tool create CHR/NAM on background, then you opened image.
+    Rightside checkboxs are for checking NAM.
+
+  (2)Save CHR file
+
+  (3)Save NAM file
+
+
+# Picture format
+  Size  : Under 256 * 240
+  Color : 256 palette
+          See palette "sample.bmp".
+          If you cant understand palette, you need create 4color picture.
+
+
+# History
+  2008/11/15 Ver.0.10
+    add : It can create NAM using user selected CHR
+    add : File save dialog has default filename
+    fix : Color bug at copied half brightness picture with NAM
+    fix : Saved CHR has only 256 characters or less. 
+    fix : The size of output NAM is changed to 0x0400
+    fix : menu and icon
+
+  2008/11/09 Ver.0.05
+    add : Checkbox for half brightness
+
+  2008/11/08 Ver.0.03
+    add : Support over 256 charactors
+    add : Charactor counter
+
+  2008/11/08 Ver.0.02
+    add : Copy and paste
+
+  2008/11/08 Ver.0.01
+    Release
+
+
+# Website
+  URL : http://www.briansemu.com/yymarioed/

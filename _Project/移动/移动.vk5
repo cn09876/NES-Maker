@@ -1,0 +1,14 @@
+[Project]
+name=ÒÆ¶¯
+
+
+[List]
+Count=7
+0=crt0.s
+1=nes.inc
+2=nes.cfg
+3=ASCII.chr
+4=zeropage.inc
+5=Build.cmd
+6=ÒÆ¶¯.c
+
